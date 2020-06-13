@@ -2,7 +2,6 @@ var heapSize = 0;
 
 function heapSort(a) {
   buildMaxHeap(a);
-  console.log("After max-heap", a);
   for (i = a.length - 1; i >= 1; i--) {
     var tmp = a[0];
     a[0] = a[i]
