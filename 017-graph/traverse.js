@@ -226,6 +226,51 @@ class DFS {
   }
 }
 
+class TopologicalSort {
+  g;
+  time = 0;
+  vList = [];
+  sortedList = new SingleLinkedList();
+
+  constructor(g) {
+    this.g = g;
+  }
+
+  sort() {
+    this.vList = new Array(this.g.v).fill().map(() => ({d: Infinity, f: Infinity, color: 'white', p: null}));
+    for (let i = 0; i < this.g.v; i++) {
+      if (this.vList[i].color === 'white') {
+        this.dfsVisit(i);
+      }
+    }
+    let ptr = this.sortedList.head;
+    const result = [];
+    while(ptr !== null) {
+      result.push(ptr.key);
+      ptr = ptr.next;
+    }
+    console.log('Topological sort - ', result.join(', '));
+  }
+
+  dfsVisit(u) {
+    this.time += 1;
+    this.vList[u].d = this.time;
+    this.vList[u].color = 'gray';
+    let adj = this.g.adj[u].head;
+    while(adj !== null) {
+      if (this.vList[adj.key].color === 'white') {
+        this.vList[adj.key].p = u;
+        this.dfsVisit(adj.key);
+      }
+      adj = adj.next;
+    }
+    this.vList[u].color = 'black';
+    this.time += 1;
+    this.vList[u].f = this.time;
+    this.sortedList.insertAtHead(u);
+  }
+}
+
 const g = new UndirectedGraph(8);
 g.addEdge(0, 1);
 g.addEdge(0, 4);
@@ -278,4 +323,9 @@ console.log('-----------------');
 const dfs2 = new DFS(g2);
 console.log('DFS traverse');
 dfs2.traverse();
+console.log('-----------------');
+
+const tpSort = new TopologicalSort(g2);
+console.log('TopologicalSort');
+tpSort.sort();
 console.log('-----------------');
