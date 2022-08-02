@@ -158,10 +158,12 @@ class KruskalAlgo {
         this.union(u, v);
       }
     }
+
     console.log('MST Edges --- ');
+    console.log('u v w');
     let weight = 0;
     for (let i = 0; i < mstEdges.length; i++) {
-      console.log('u, v, w ', mstEdges[i].u, mstEdges[i].v, mstEdges[i].w);
+      console.log(mstEdges[i].u, mstEdges[i].v, mstEdges[i].w);
       weight += mstEdges[i].w;
     }
     console.log('Total MST weight --- ', weight);
@@ -175,8 +177,48 @@ class PrimAlgo {
     this.g = g;
   }
 
-  mst() {
+  // MinHeap can be used for better performance
+  findMin(list) {
+    let min = Infinity;
+    let nodeIndex = -1;
+    for (let i = 0; i < list.length; i++) {
+      if (list[i].inQueue === true && list[i].key < min) {
+        min = list[i].key;
+        nodeIndex = i;
+      }
+    }
+    if (nodeIndex !== -1) {
+      list[nodeIndex].inQueue = false;
+    }
+    return nodeIndex;
+  }
 
+  mst(r) {
+    const vList = new Array(this.g.v).fill().map(() => ({p: null, key: Infinity, inQueue: true}));
+    vList[r].key = 0;
+    let weight = 0;
+    console.log('MST nodes --- ');
+    console.log('u v w');
+    while(true) {
+      const u = this.findMin(vList);
+      if (u !== -1) {
+        weight += vList[u].key;
+        //console.log('node - ', u, ' parent - ', vList[u].p, ' weight - ', vList[u].key);
+        console.log(vList[u].p, u, vList[u].key);
+        let adj = this.g.adj[u].head;
+        while (adj !== null) {
+          const v = adj.key;
+          if (vList[v].inQueue === true && this.g.edgeMatrix[u][v] < vList[v].key) {
+            vList[v].p = u;
+            vList[v].key = this.g.edgeMatrix[u][v];
+          }
+          adj = adj.next;
+        }
+      } else {
+        break;
+      }
+    }
+    console.log('MST weight  --- ', weight);
   }
 }
 
@@ -203,4 +245,9 @@ console.log('-----------------');
 console.log('MST by Kruskal Algo');
 const kmst = new KruskalAlgo(g);
 kmst.mst();
+console.log('-----------------');
+
+console.log('MST by Prim Algo');
+const pmst = new PrimAlgo(g);
+pmst.mst(0);
 console.log('-----------------');
