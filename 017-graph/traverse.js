@@ -271,6 +271,78 @@ class TopologicalSort {
   }
 }
 
+class StronglyConnectedComponents {
+  g;
+  vList = [];
+  sortedList = new SingleLinkedList();
+  time = 0;
+  gt;
+
+  constructor(g) {
+    this.g = g;
+  }
+
+  findConnectedComponents() {
+    console.log('Finding connected components ---- ');
+    this.vList = new Array(this.g.v).fill().map(() => ({d: Infinity, f: Infinity, color: 'white', p: null}));
+    for (let i = 0; i < this.g.v; i++) {
+      if (this.vList[i].color === 'white') {
+        this.dfsVisit(i, this.g, false);
+      }
+    }
+
+    this.transposeGraph();
+
+    this.time = 0;
+    this.vList = new Array(this.gt.v).fill().map(() => ({d: Infinity, f: Infinity, color: 'white', p: null}));
+    let ptr = this.sortedList.head;
+    while (ptr !== null) {
+      const key = ptr.key;
+      if (this.vList[key].color === 'white') {
+        console.log('connected component --- ');
+        this.dfsVisit(key, this.gt, true);
+      }
+      ptr = ptr.next;
+    }
+  }
+
+  dfsVisit(u, g, printNode) {
+    this.time += 1;
+    this.vList[u].d = this.time;
+    this.vList[u].color = 'gray';
+    let adj = g.adj[u].head;
+    while(adj !== null) {
+      if (this.vList[adj.key].color === 'white') {
+        this.vList[adj.key].p = u;
+        this.dfsVisit(adj.key, g, printNode);
+      }
+      adj = adj.next;
+    }
+    this.vList[u].color = 'black';
+    this.time += 1;
+    this.vList[u].f = this.time;
+    if (printNode) {
+      console.log('node - ', u);
+    } else {
+      this.sortedList.insertAtHead(u);
+    }
+  }
+
+  transposeGraph() {
+    this.gt = new DirectedGraph(this.g.v);
+    for (let i = 0; i < this.g.v; i++) {
+      let adj = this.g.adj[i].head;
+      while (adj !== null) {
+        const key = adj.key;
+        this.gt.addEdge(key, i);
+        adj = adj.next;
+      }
+    }
+    console.log('Transpose of graph');
+    this.gt.print();
+  }
+}
+
 const g = new UndirectedGraph(8);
 g.addEdge(0, 1);
 g.addEdge(0, 4);
@@ -328,4 +400,25 @@ console.log('-----------------');
 const tpSort = new TopologicalSort(g2);
 console.log('TopologicalSort');
 tpSort.sort();
+console.log('-----------------');
+
+const g3 = new DirectedGraph(8);
+g3.addEdge(0, 1);
+g3.addEdge(1, 4);
+g3.addEdge(1, 5);
+g3.addEdge(1, 2);
+g3.addEdge(2, 6);
+g3.addEdge(2, 3);
+g3.addEdge(3, 2);
+g3.addEdge(3, 7);
+g3.addEdge(4, 0);
+g3.addEdge(4, 5);
+g3.addEdge(5, 6);
+g3.addEdge(6, 5);
+g3.addEdge(6, 7);
+g3.addEdge(7, 7);
+
+const scCom = new StronglyConnectedComponents(g3);
+console.log('StronglyConnectedComponents');
+scCom.findConnectedComponents();
 console.log('-----------------');
