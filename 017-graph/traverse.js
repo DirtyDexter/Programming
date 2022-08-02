@@ -187,6 +187,45 @@ class BFS {
   }
 }
 
+class DFS {
+  g;
+  time = 0;
+  vList = [];
+
+  constructor(g) {
+    this.g = g;
+  }
+
+  traverse() {
+    this.vList = new Array(this.g.v).fill().map(() => ({d: Infinity, f: Infinity, color: 'white', p: null}));
+    for (let i = 0; i < this.g.v; i++) {
+      if (this.vList[i].color === 'white') {
+        this.dfsVisit(i);
+      }
+    }
+    for (let i = 0; i < this.vList.length; i++) {
+      console.log('node - ', i, ' start - ', this.vList[i].d, ' finish - ', this.vList[i].f, ' parent - ', this.vList[i].p, ' color - ', this.vList[i].color);
+    }
+  }
+
+  dfsVisit(u) {
+    this.time += 1;
+    this.vList[u].d = this.time;
+    this.vList[u].color = 'gray';
+    let adj = this.g.adj[u].head;
+    while(adj !== null) {
+      if (this.vList[adj.key].color === 'white') {
+        this.vList[adj.key].p = u;
+        this.dfsVisit(adj.key);
+      }
+      adj = adj.next;
+    }
+    this.vList[u].color = 'black';
+    this.time += 1;
+    this.vList[u].f = this.time;
+  }
+}
+
 const g = new UndirectedGraph(8);
 g.addEdge(0, 1);
 g.addEdge(0, 4);
@@ -206,6 +245,11 @@ console.log('-----------------');
 const bfs = new BFS(g);
 console.log('BFS traverse from source node - 1');
 bfs.traverse(1);
+console.log('-----------------');
+
+const dfs = new DFS(g);
+console.log('DFS traverse');
+dfs.traverse();
 console.log('-----------------');
 
 
@@ -229,4 +273,9 @@ bfs2.traverse(0);
 console.log('-----------------');
 console.log('BFS traverse from source node - 2');
 bfs2.traverse(2);
+console.log('-----------------');
+
+const dfs2 = new DFS(g2);
+console.log('DFS traverse');
+dfs2.traverse();
 console.log('-----------------');
