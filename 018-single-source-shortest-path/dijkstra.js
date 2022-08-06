@@ -77,9 +77,9 @@ class DirectedGraph {
     for (let i = 0; i < n; i++) {
       for (let j = 0; j < n; j++) {
         if (i == j) {
-          this.weightMatrix[i][i] = 0;
+          this.weightMatrix[i][j] = 0;
         } else {
-          this.weightMatrix[i][i] = Infinity;
+          this.weightMatrix[i][j] = Infinity;
         }
       }
     }
