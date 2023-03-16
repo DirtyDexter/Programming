@@ -1,0 +1,9 @@
+1- Longest Palindrom String
+
+Linear time - https://www.geeksforgeeks.org/manachers-algorithm-linear-time-longest-palindromic-substring-part-1/
+
+
+2- Kandane's Algo - Largest sub-array sum
+
+3- Boyer-Moore majority element - https://www.geeksforgeeks.org/boyer-moore-majority-voting-algorithm/
+
