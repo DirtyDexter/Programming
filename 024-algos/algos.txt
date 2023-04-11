@@ -7,3 +7,12 @@ Linear time - https://www.geeksforgeeks.org/manachers-algorithm-linear-time-long
 
 3- Boyer-Moore majority element - https://www.geeksforgeeks.org/boyer-moore-majority-voting-algorithm/
 
+
+
+// https://ganeshprasad227.medium.com/30-days-interview-preparation-plan-200-best-coding-questions-and-behavioural-interviews-3f8fc19c2361
+
+https://interviewnoodle.com/youre-doing-leetcode-wrong-here-s-how-to-get-the-maximum-benefit-5517af5ce884
+
+https://interviewnoodle.com/grokking-leetcode-a-smarter-way-to-prepare-for-coding-interviews-e86d5c9fe4e1
+
+
