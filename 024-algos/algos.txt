@@ -7,6 +7,12 @@ Linear time - https://www.geeksforgeeks.org/manachers-algorithm-linear-time-long
 
 3- Boyer-Moore majority element - https://www.geeksforgeeks.org/boyer-moore-majority-voting-algorithm/
 
+4- Morris traversal -  https://leetcode.com/problems/binary-tree-postorder-traversal/solutions/45628/Morris-Traversal-Time-O(n)-Space-O(1)-inorder-preorder-postorder/
+
+5- DNF Algo - https://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/ - Sort array of 0,1,and 2
+
+6- https://leetcode.com/problems/generate-parentheses/editorial/  => Catalan Number
+
 
 
 // https://ganeshprasad227.medium.com/30-days-interview-preparation-plan-200-best-coding-questions-and-behavioural-interviews-3f8fc19c2361
@@ -14,5 +20,30 @@ Linear time - https://www.geeksforgeeks.org/manachers-algorithm-linear-time-long
 https://interviewnoodle.com/youre-doing-leetcode-wrong-here-s-how-to-get-the-maximum-benefit-5517af5ce884
 
 https://interviewnoodle.com/grokking-leetcode-a-smarter-way-to-prepare-for-coding-interviews-e86d5c9fe4e1
+
+https://www.topcoder.com/thrive/articles/A%20bit%20of%20fun:%20fun%20with%20bits
+
+
+
+https://leetcode.com/discuss/general-discussion/1000929/solved-all-dynamic-programming-dp-problems-in-7-months
+
+
+https://leetcode.com/discuss/general-discussion/458695/Dynamic-Programming-Patterns
+
+
+https://leetcode.com/discuss/general-discussion/662866/DP-for-Beginners-Problems-or-Patterns-or-Sample-Solutions
+
+https://leetcode.com/discuss/general-discussion/494279/comprehensive-data-structure-and-algorithm-study-guide
+
+https://leetcode.com/problems/sum-of-two-integers/solutions/84278/A-summary:-how-to-use-bit-manipulation-to-solve-problems-easily-and-efficiently/
+
+
+
+
+
+
+
+
+
 
 
